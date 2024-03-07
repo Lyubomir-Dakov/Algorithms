@@ -9,15 +9,13 @@
 # ####
 # #####
 
-num = int(input())
-
-
 def draw(n):
-    if n == 0:
-        return
-    print('*' * n)
-    draw(n - 1)
-    print('#' * n)
+    if n == 1:
+        return '*'
+
+    if n > 1:
+        return '*' + draw(n - 1)
 
 
-draw(num)
+number = int(input())
+print(draw(number))

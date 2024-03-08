@@ -10,12 +10,12 @@
 # #####
 
 def draw(n):
-    if n == 1:
-        return '*'
-
-    if n > 1:
-        return '*' + draw(n - 1)
+    if n == 0:
+        return
+    print('*' * n)
+    draw(n - 1)
+    print('#' * n)
 
 
 number = int(input())
-print(draw(number))
+draw(number)

@@ -2,8 +2,6 @@ r = int(input())
 c = int(input())
 l = [list(input()) for row in range(r)]
 
-result = []
-
 
 def in_boundaries(row, cow, lab):
     if row < 0 or row >= len(lab) or cow < 0 or cow >= len(lab[row]):

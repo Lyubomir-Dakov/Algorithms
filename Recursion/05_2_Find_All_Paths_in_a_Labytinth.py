@@ -11,35 +11,36 @@ labyrinth = [list(input()) for row in range(r)]
 
 
 def find_path(row, col, lab, direction, path):
-    if not in_boundaries(row, col, lab, direction, path):
+    if not in_boundaries(row, col, lab):
         return
 
-    if exit_lab(row, col, lab, direction, path):
+    if exit_lab(row, col, lab):
+        path.append(direction)
+        print(''.join(path).strip())
         path.pop()
         return
 
     elif is_free(row, col, lab):
         mark_field(row, col, lab)
+        path.append(direction)
 
         find_path(row, col - 1, lab, 'L', path)
         find_path(row, col + 1, lab, 'R', path)
-        find_path(row + 1, col, lab, 'U', path)
-        find_path(row - 1, col, lab, 'D', path)
+        find_path(row - 1, col, lab, 'U', path)
+        find_path(row + 1, col, lab, 'D', path)
 
         un_mark_field(row, col, lab)
+        path.pop()
 
 
-def in_boundaries(x, y, lab, direction, path):
-    if 0 <= x < len(lab) and 0 <= y <= len(lab[x]):
-        path.append(direction)
+def in_boundaries(x, y, lab):
+    if 0 <= x < len(lab) and 0 <= y < len(lab[x]):
         return True
     return False
 
 
-def exit_lab(x, y, lab, direction, path):
+def exit_lab(x, y, lab):
     if lab[x][y] == 'e':
-        path.append(direction)
-        print(path)
         return True
     return False
 
